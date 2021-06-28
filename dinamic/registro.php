@@ -46,6 +46,7 @@
 	 <?php
 	 	if ($key_current == "registro") {
 	 ?>
+	 	<div id="form_login_table">
 	 		 <form class="default" action="redRegister.php" method="POST">
 			  <label for="user">Usuario:</label><br>
 			  <input type="text" id="user" name="user" ><br>
@@ -55,10 +56,28 @@
 			  <input type="password" id="pass" name="pass"><br>
 			  <center><input style="color: black" type="submit" name="confirm" value="confirmar" id="button"></center>
 			</form>
+		</div>	
+			<div id="form_login">
+				<div id="form_loginUsererror">
+					<p>Usuario registrado.</p>
+				</div>
+				<div id="form_loginEmailerror">
+					<p>Correo ya registrado.</p>
+				</div>
+				<div id="form_loginEmailerror_valid">
+					<p>Correo no valido.</p>
+				</div>
+				<div id="form_loginPassworderror">
+					<p>Contraseña mínima de 6 carácteres.</p>
+				</div>
+			</div>
+
 	 <?php
+
 	 	};
 	 ?>
 	<?php 
 		include_once("footer.php");
 
 	?>	
+			<script src="js/errorEmail.js"></script>

@@ -3,10 +3,18 @@
 	require '/var/www/html/vendor/autoload.php';
 	$uri ="mongodb://localhost";
 	$client = new MongoDB\Client($uri);
-	$questProd = array('_id' => new MongoDB\BSON\ObjectId($keyCurrent));
+	$questProd = array('id_cat' => $keyCurrent);
 	$db_Productos = $client->piñufle->Productos->find($questProd);
+	$detalleProd = array();
 	foreach ($db_Productos as $key) {
-		$detalleProd[$key['_id']->__toString()] = array('nombre'=>$key['name'],'precio'=>$key['precio']*1000,'id_categoria'=>$key['id_cat'],'imagen'=>$key['imagen']);
+		$id = $key['_id']->__toString();
+		$id_cat = $key['id_cat'];
+		$nombre = $key['name'];
+		$precio = $key['precio']*1000;
+		$imagen = $key['imagen'];
+		$Producto = array("id"=>$id,"id_cat"=>$id_cat,"nombre"=>$nombre,"precio"=>$precio,"imagen"=>$imagen);
+
+		$detalleProd[] = $Producto;
 	}
 	echo json_encode($detalleProd);
 
